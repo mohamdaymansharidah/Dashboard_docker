@@ -31,19 +31,11 @@ export class ForgetPassword {
   initForgotPasswordForm() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   get email() {
     return this.form.get('email');
-  }
-  get confirmPassword() {
-    return this.form.get('confirmPassword');
-  }
-  get password() {
-    return this.form.get('password');
   }
 
   onSubmit() {
@@ -54,9 +46,10 @@ export class ForgetPassword {
 
     const formData = this.form.value;
 
-    this.api.store('reset-password', formData).subscribe({
+    this.api.store('forgot-password', formData).subscribe({
       next: (response: any) => {
         this.toast.success('Password reset email sent successfully');
+        this.router.navigate(['dashboard/reset-password'], { state: { email: formData.email } });
         this.emailSent = true;
       },
       error: (err) => {

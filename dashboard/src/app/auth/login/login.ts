@@ -12,7 +12,7 @@ import { login } from '../../types/Login';
 
 @Component({
   selector: 'app-login',
-  imports: [InputText, ReactiveFormsModule, NgClass, RouterLink, ButtonDirective, CommonModule],
+  imports: [ReactiveFormsModule, NgClass, RouterLink, ButtonDirective, CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -31,12 +31,12 @@ export class Login implements OnInit {
   }
   initLoginForm() {
     this.form = this.fb.group({
-      Username: ['', [Validators.required]],
+      name: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(12)]],
     });
   }
-  get Username() {
-    return this.form.get('Username');
+  get name() {
+    return this.form.get('name');
   }
 
   get password() {

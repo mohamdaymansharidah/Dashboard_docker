@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { confirmPasswordValidator } from '../Vaildtors/confirm-password';
 import { Router, RouterLink } from '@angular/router';
-import { Toast } from '../../service/toast';
 import { Api } from '../../service/api';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Toast } from '../../service/toast';
 import { Auth } from '../../service/auth';
+import { confirmPasswordValidator } from '../Vaildtors/confirm-password';
+import { CommonModule, NgClass } from '@angular/common';
 import { ButtonDirective } from 'primeng/button';
 import { InputText } from 'primeng/inputtext';
-import { CommonModule, NgClass, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-register',
-  imports: [ButtonDirective, InputText, ReactiveFormsModule, RouterLink, NgClass, CommonModule],
-  templateUrl: './register.html',
-  styleUrl: './register.css',
+  selector: 'app-reset-password',
+  imports: [ButtonDirective, InputText, ReactiveFormsModule, NgClass, CommonModule],
+
+  templateUrl: './reset-password.html',
+  styleUrl: './reset-password.css',
 })
-export class Register {
+export class ResetPassword {
   form!: FormGroup;
 
   constructor(
@@ -31,14 +33,9 @@ export class Register {
   }
   FormRegister() {
     this.form = this.fb.group({
-      name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(12)]],
-      confirmPassword: ['', [Validators.required, confirmPasswordValidator]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
-  }
-  get name() {
-    return this.form.get('name');
   }
 
   get email() {
@@ -49,11 +46,7 @@ export class Register {
     return this.form.get('password');
   }
 
-  get confirmPassword() {
-    return this.form.get('confirmPassword');
-  }
-
-  onRegister() {
+  onSubmit() {
     if (this.form.invalid || this.email?.errors) {
       this.form.markAllAsTouched();
       return;
@@ -61,20 +54,19 @@ export class Register {
 
     const formData = this.form.value;
 
-    this.api.store('register', formData).subscribe({
+    this.api.store('reset-password', formData).subscribe({
       next: (response: any) => {
         this.toast.success('Account created successfully');
 
         // Store auth token if returned from API
         this.authService.setToken(response.token);
         //for user data (username and email in local storeage) :) or :(
+
         this.authService.setUserData({
           username: response.username,
           email: response.email,
         });
-
         // Handle registration success - redirect to welcome page
-        this.authService.handleRegistrationSuccess();
       },
       error: (err) => {
         if (err.error?.length) {

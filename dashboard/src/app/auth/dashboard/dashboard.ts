@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { ResetPassword } from '../reset-password/reset-password';
+import { Navbar } from './navbar/navbar';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [Navbar, RouterOutlet],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
-export class Dashboard {
-
-}
+export class Dashboard {}
