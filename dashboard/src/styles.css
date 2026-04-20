@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss';
+
+:root {
+  --color-primary: #1B3C53;
+  --color-secondary: #234C6A;
+  --color-tertiary: #456882;
+  --color-light: #D2C1B6;
+
+  --color-primary-hover: #163246;
+  --color-text: #ffffff;
+  --color-bg: #0f1f2b;
+}
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-tertiary {
+  color: var(--color-tertiary);
+}
+
+.text-light {
+  color: var(--color-light);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  scroll-behavior: smooth;
+}
