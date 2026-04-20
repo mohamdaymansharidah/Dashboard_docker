@@ -64,8 +64,7 @@ export class Login implements OnInit {
         });
 
         // Handle login success - redirect based on new user status
-        this.authService.handleLoginSuccess();
-
+        this.authService.handleRegistrationSuccess();
         console.log('Login response:', response);
       },
       error: (err) => {

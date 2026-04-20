@@ -1,26 +1,20 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Router, RouterLink} from '@angular/router';
-import {Api} from '../../service/api';
-import {Toast} from '../../service/toast';
-import {NgClass, NgIf} from '@angular/common';
-import {ButtonDirective} from 'primeng/button';
-import {InputText} from 'primeng/inputtext';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { Api } from '../../service/api';
+import { Toast } from '../../service/toast';
+import { NgClass, NgIf } from '@angular/common';
+import { ButtonDirective } from 'primeng/button';
+import { InputText } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-forget-password',
-  imports: [
-    ReactiveFormsModule,
-    ButtonDirective,
-    InputText,
-    NgIf
-  ],
+  imports: [ReactiveFormsModule, ButtonDirective, InputText, NgIf],
   templateUrl: './forget-password.html',
   styleUrl: './forget-password.css',
 })
 export class ForgetPassword {
   form!: FormGroup;
-  isLoading = false;
   emailSent = false;
 
   constructor(
@@ -58,17 +52,14 @@ export class ForgetPassword {
       return;
     }
 
-    this.isLoading = true;
     const formData = this.form.value;
 
     this.api.store('reset-password', formData).subscribe({
       next: (response: any) => {
         this.toast.success('Password reset email sent successfully');
         this.emailSent = true;
-        this.isLoading = false;
       },
       error: (err) => {
-        this.isLoading = false;
         if (err.error?.length) {
           this.toast.error(err.error[0].description);
         } else {
@@ -93,5 +84,4 @@ export class ForgetPassword {
   goBack() {
     this.router.navigate(['auth/login']);
   }
-
 }
