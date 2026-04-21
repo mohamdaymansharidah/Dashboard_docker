@@ -19,7 +19,7 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - ./authLaravel:/var/www/html
+      - ./authLaravel:/var/www
     environment:
       APP_ENV: local
       DB_CONNECTION: mysql
@@ -53,7 +53,7 @@ services:
     ports:
       - "8081:80"
     volumes:
-      - ./:/var/www
+      - ./authLaravel:/var/www
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
 
     depends_on:

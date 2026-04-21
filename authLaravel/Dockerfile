@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl bcmath gd
 
+
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -29,5 +30,6 @@ COPY . /var/www
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www
+
 
 EXPOSE 9000
