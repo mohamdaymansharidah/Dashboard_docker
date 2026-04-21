@@ -1,5 +1,9 @@
-<div class="flex justify-center items-center p-12">
-  <form class="space-y-5" [formGroup]="form" (ngSubmit)="onRegister()">
+<div class="flex justify-center items-center">
+  <div class="p-12 mt-12 rounded-2xl bg-amber-300">
+    <img [src]="'Dropped Image.png'" alt="Login Image" />
+  </div>
+
+  <form class="space-y-5 mt-12 rounded-2xl" [formGroup]="form" (ngSubmit)="onRegister()">
     <div class="space-y-2">
       <label for="email" class="block text-sm font-medium text-gray-700"> Username </label>
       <input
@@ -87,9 +91,9 @@
     </div>
     <button
       type="submit"
-      pButton
       [disabled]="form.invalid"
-      class="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg"
+      pButton
+      class="w-full bg-primary hover:bg-primary-hover text-white font-semibold py-3 px-4 rounded-lg"
     >
       Sign In
     </button>
@@ -102,15 +106,6 @@
           class="text-blue-600 hover:text-blue-700 font-medium transition-colors"
         >
           go login
-        </a>
-      </p>
-      <p class="text-sm text-gray-600 mb-4">
-        forgot password?
-        <a
-          routerLink="../forget-password"
-          class="text-blue-600 hover:text-blue-700 font-medium transition-colors"
-        >
-          Reset password
         </a>
       </p>
 

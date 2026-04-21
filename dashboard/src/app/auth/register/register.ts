@@ -11,7 +11,7 @@ import { CommonModule, NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [ButtonDirective, InputText, ReactiveFormsModule, RouterLink, NgClass, CommonModule],
+  imports: [InputText, ReactiveFormsModule, RouterLink, NgClass, CommonModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })

@@ -10,7 +10,7 @@
 
   --color-primary-hover: #163246;
   --color-text: #ffffff;
-  --color-bg: #0f1f2b;
+  --color-bg: #D2C1B6;
 }
 .text-primary {
   color: var(--color-primary);
@@ -29,7 +29,7 @@
 }
 
 .bg-primary {
-  background-color: var(--color-primary);
+  background-color: var(--color-bg);
 }
 
 
@@ -40,5 +40,6 @@ body {
 }
 
 * {
+  background-color: var(--color-text);
   scroll-behavior: smooth;
 }
