@@ -5,13 +5,13 @@ import { Router, RouterLink } from '@angular/router';
 import { Toast } from '../../service/toast';
 import { Api } from '../../service/api';
 import { Auth } from '../../service/auth';
-import { ButtonDirective } from 'primeng/button';
+import { ButtonDirective, Button } from 'primeng/button';
 import { InputText } from 'primeng/inputtext';
 import { CommonModule, NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [InputText, ReactiveFormsModule, RouterLink, NgClass, CommonModule],
+  imports: [ReactiveFormsModule, RouterLink, NgClass, CommonModule, ],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
@@ -29,13 +29,16 @@ export class Register {
   ngOnInit(): void {
     this.FormRegister();
   }
+
   FormRegister() {
     this.form = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(12)]],
-      confirmPassword: ['', [Validators.required, confirmPasswordValidator]],
-    });
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]],
+    }, {
+      validators: confirmPasswordValidator
+});
   }
   get name() {
     return this.form.get('name');
@@ -45,6 +48,7 @@ export class Register {
     return this.form.get('email');
   }
 
+
   get password() {
     return this.form.get('password');
   }
@@ -52,6 +56,8 @@ export class Register {
   get confirmPassword() {
     return this.form.get('confirmPassword');
   }
+
+
 
   onRegister() {
     if (this.form.invalid || this.email?.errors) {

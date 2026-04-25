@@ -10,7 +10,7 @@
 
   --color-primary-hover: #163246;
   --color-text: #ffffff;
-  --color-bg: #D2C1B6;
+  --color-bg: #cc9068;
 }
 .text-primary {
   color: var(--color-primary);
